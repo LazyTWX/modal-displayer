@@ -1,25 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
 
-function App() {
+import { Container, Button, ModalOverlayer, ModalContainer } from './styles';
+import GlobalStyles from './styles/global';
+
+const App: React.FC = () => {
+  const [modalState, setModalState] = useState(false);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Container>
+        <Button onClick={() => setModalState(true)}>Abrir modal</Button>
+      </Container>
+
+      <ModalOverlayer modal={modalState} />
+
+      <ModalContainer modal={modalState}>
+        <button onClick={() => setModalState(false)}>
+          <div className="bar-1" />
+          <div className="bar-2" />
+        </button>
+
+        <h1>Modal</h1>
+      </ModalContainer>
+      <GlobalStyles />
+    </>
   );
 }
 
